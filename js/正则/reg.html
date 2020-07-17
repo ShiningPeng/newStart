@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let obj = {
+            name: 'lilei',
+            age: 18,
+        }
+        let str = 'my name is {name}, age is {age}'
+        let reg = /\{(\w+)\}/g
+        let newStr = str.replace(reg, (...arg) => {
+            // console.log('arg',...arg)
+            let key = arg[1]
+            return obj[key]
+        })
+        // console.log(newStr)
+
+        // YYYY-MM-DD      =>  MM-DD.YYYY
+        //2017-05-12  => 05-12.2017
+        let date = '2017-12-15'
+        
+        function format(date) {
+            // console.log(reg1.exec(date))
+            let reg1 = /(\d{4})-(\d{2})-(\d{2})/g;
+            // return date.replace(reg1,(...arg) => {
+            //     //  console.log(arg);
+            //      return `${arg[2]}-${arg[3]}.${arg[1]}`
+            //  })
+            return date.replace(reg1,'$2-$3.$1')
+        }
+        console.log(format(date));
+    </script>
+</body>
+
+</html>

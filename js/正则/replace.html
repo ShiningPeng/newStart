@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // var str = "aaaabbbbbccccc";
+        // var reg = /(\w)\1*/g;
+        // console.log(str.replace(reg,(...arg) => {
+        //     console.log(arg)
+        // }));//abc
+
+
+        
+        let reg1 = /-([a-zA-Z]{1})/g
+        let str1 = 'background-color-gfd'
+        let newstr = str1.replace(reg1, (...arg) => {
+            // console.log(arg);
+            return arg[1].toUpperCase()
+        })
+        console.log(newstr)
+    </script>
+</body>
+
+</html>
