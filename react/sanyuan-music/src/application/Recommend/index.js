@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
  function Recommend(props) {
      const { recommendList } = props;
-     console.log(recommendList,'----------');  
+    //  console.log(recommendList,'----------');  
     return (
         <>
             Recommend

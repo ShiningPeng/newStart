@@ -1,0 +1,28 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+.linkage {
+  display:flex;
+}
+
+nav {
+  width: 50px;
+  /* position: fixed; */
+
+}
+dd {
+  height: 60px;
+}
+dt {
+  width: 36px;
+}
+.tab-detail {
+  flex:1;
+  /* padding-left: 50px; */
+  height: 100vh;
+  overflow-y: scroll;
+}
+.active {
+  color: red;
+}
