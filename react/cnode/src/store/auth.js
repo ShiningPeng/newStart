@@ -1,4 +1,4 @@
-import { observable, action } from 'mbox';
+import { observable, action } from 'mobx';
 
 class Auth {
     @observable isLogin = false; // 没有和页面 绑定
