@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #el {
+            width: 30px;
+            height: 30px;
+            background-color: red;
+            animation: move 5s linear;
+        }
+
+        /* @keyframes move {
+            to {
+                transform: translate3d(400px, 400px, 0);
+            }
+        }
+        #pause {
+
+        } */
+    </style>
+</head>
+
+<body>
+    <div id="el"></div>
+    <button id="pause" onclick="pause()">pause</button>
+    <button id="pause" onclick="resume()">resume</button>
+    <script>
+        // const pause = document.getElementById('pause');
+        const el = document.getElementById('el');
+        // pause.addEventListener('click', () => {
+        //     const style = window.getComputedStyle(el).transform;
+        //     console.log(style);
+        //     const {x, y} = el.getBoundingClientRect();
+        //     el.style.animation = 'none';
+        //     el.style.transform = `translate3d(${x}px, ${y}px), 0`;
+        // })
+        let end = 400, duration = 5000, start = 0;
+        let startTime = Date.now();
+        function tick() {
+            let hasPassed = Date.now() - startTime;
+            let progress = hasPassed / duration;
+            if (progress >= 1) {
+                el.style.transform = `translate3d(${end}px, 0, 0)`;
+                return;
+            }
+            let x = progress * (end - start);
+            el.style.transform = `translate3d(${x}px, 0, 0)`;
+            requestAnimationFrame(tick);
+            rafId = requestAnimationFrame(tick);
+        }
+        var pauseTime = null;
+        function pause() {
+            pauseTiem = Date.now();
+            cancelAnimationFrame(rafId);
+            console.log(1)
+        }
+        var rafId = null;
+        rafId = requestAnimationFrame(tick);
+        function resume() {
+            startTime += Date.now() - pauseTime;
+            rafId = requestAnimationFrame(tick);
+        }
+        // cancelAnimationFrame()
+        // setInterval(() => {
+        //     console.log(1)
+        // }, 16);
+        // setInterval 不能保证准确在每一帧调用
+        // requestAnimationFrame 能够确保回调在每一帧调用
+        // 屏幕刷新率
+        // 60Hz 一秒刷新60次
+    </script>
+</body>
+
+</html>
