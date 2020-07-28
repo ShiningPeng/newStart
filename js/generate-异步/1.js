@@ -1,0 +1,36 @@
+// repeat 实现，使用JS实现一个repeat方法，调用这个 repeatedFunc("hellworld")，
+// 会alert4次 helloworld, 每次间隔3秒
+
+function repeat(func, times, wait) {
+    return (content) => {
+        function sleep(time) {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve()
+                }, time)
+            })
+        }
+
+        function* foo() {
+            for (let i = 0; i < times; i++) {
+                yield sleep(wait)
+                func(content)
+            }
+        }
+        let iterator = foo();
+
+        function autorun(obj) {
+            let {
+                value,
+                done
+            } = obj.next();
+            if (done) return
+            value.then(() => {
+                autorun(obj)
+            })
+        }
+        autorun(iterator)
+    }
+}
+const repeatFunc = repeat(console.log, 4, 3000)
+repeatFunc("hellworld");

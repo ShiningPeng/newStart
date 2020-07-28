@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // async await
+        // 协（纤）程:意为比进程 / 线程更小的单位
+        // 可以被终止，被打断
+        // 普通函数是不可被打断，一次性执行完
+        function* foo() {
+            let a = yield 1         //yield 不是返回1的意思，并不做返回，
+            console.log('1')        //如果需要返回值，那么需要放在next(返回值)
+            // yield只是单纯的把内容分成几个部分
+            let b = yield 2
+            console.log(2, b)
+            let c = yield 3
+            console.log(3, c)
+            let d = yield 4
+            console.log(4, d)
+        }
+        let iterator = foo();
+
+        function autoRun(iteratorObj) {
+            let { done } = iteratorObj.next(20)
+            if (done) {
+                return
+            }
+            autoRun(iteratorObj);
+        }
+        autoRun(iterator);
+
+        // console.log(iterator.next())
+        // console.log(iterator.next())
+        // console.log(iterator.next())
+        // console.log(iterator.next())
+        // console.log(iterator.next())
+    </script>
+</body>
+
+</html>
