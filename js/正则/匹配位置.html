@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // let str = 'hello'
+        // let newStr = str.replace(/$/, '#')
+        // console.log(newStr)
+
+        // //子模式 子正则，理解为正则嵌套
+        // // (?=xxx)
+        // // (?=l) : l前面这个位置
+        // let str1 = str.replace(/(?=l)/g, '#')
+        // let str2 = str.replace(/(?!l)/g, '#')
+        // console.log(str2)
+
+        var str = "aabaaaa";
+        var reg = /(?!b)aa/g;
+        console.log(str.match(reg));//a
+    </script>
+</body>
+
+</html>

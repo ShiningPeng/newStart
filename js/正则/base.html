@@ -1,0 +1,64 @@
+<script>
+    //正则匹配内容或者位置
+    //匹配字符
+    // let str = 'abc'
+    // str === 'abc'
+
+    let reg = /abc/
+    //长度
+    // {1,2} {2,} ? + *
+    //  /ab*c/
+    let reg1 = /a[bcdfhi]c/
+    // let reg1 = /a[b-i]c/
+    // let reg1 = /a[4-8]c/
+
+    //正则匹配css里面颜色 16进制的写法
+    // () 作为整体
+    // | 或者
+    let reg2 = /^#(([0-9a-fA-F]{3})|([0-9a-fA-F]{6}))$/
+
+    // 2018-09-21
+    let reg7 = /^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[0-1])$/
+
+    //有没有匹配
+    //而且还想要提取匹配内容
+
+    console.log(reg7.test('2018-04-23'))
+
+    // exec api
+    console.log(reg7.exec('2017-12-12'))
+    // 每个()都是一个分组 ,分组的意义就是需要提取的东西，可以对其进行分组
+    // ['输入的原文本', 分组1， 分组2， ...，分组n]
+    let resg = /[a-z]/g
+    // console.log(resg.test(str))
+    // console.log(resg.exec(str))
+    // console.log(resg.test(str))
+    // console.log(resg.test(str))
+    // console.log(resg.test(str))
+    // console.log(resg.test(str))
+
+
+    let str = 'my name is {name}, age is {age}'
+    // 替换模板，使结果为 'my name is lilei, age is 18'
+    let state = {
+        name: 'lilei',
+        age: 18,
+    }
+
+    function compile(str, obj) {//方法一
+        let reg = /\{(\w+)\}/g
+        let info = reg.exec(str)
+        let i = 0;
+        // console.log(reg.exec(str))
+        let res = '';
+        while (info) {
+            res += str.substring(i, info.index)
+            let key = info[1];
+            res += obj[key];
+            i = reg.lastIndex;
+            info = reg.exec(str);
+        }
+        return res;
+    }
+    console.log(compile(str, state))
+</script>
