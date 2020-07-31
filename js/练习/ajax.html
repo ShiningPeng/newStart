@@ -1,0 +1,48 @@
+<script>
+
+    // function ajax({  url: string,  method: string,  data?: object,
+    //       timeout?: number, … }): promise;
+
+
+    function ajax({ url, method, data, timeout }) {
+        return new Promise((resolve, reject) => {
+            const xhr = new XMLHttpRequest();
+            xhr.open(method, url, true)
+            xhr.timeout = timeout;
+            xhr.responseType = 'json';
+            xhr.ontimeout = function () {
+                reject('timeout');
+            }
+            xhr.onreadystatechange = function () {
+                //0 1 2 3 4
+                if (xhr.readyState === 4) {
+                    if ((xhr.status >= 200 && xhr.status < 300) || (xhr.status === 304)) {
+                        resolve(xhr.response);
+                    } else {
+                        reject('response error');
+                    }
+                }
+            }
+            // xhr.onload()
+            // 数据？？ 与method
+            // GET 数据要拼接到url后面，
+            // POST 的话要判断content-type来讨论
+            // 数据请求常见的content-type有哪些
+            // application/json 符合json（key-value）{a:1,b:2} 返回结果可以通过JSON.stringify()来序列化
+            // application/x-www-form-urlencoded   a=1&b=2
+            // text/plain               字符串      a=1,b=2 没有格式
+            // form-data                文件（大量的非 ASCII 字符）
+            // 发送数据的格式             
+            xhr.send(JSON.stringify(xhr.response))
+        })
+    }
+    ajax({ method: 'GET', url: 'http://rap2.taobao.org:38080/app/mock/261420/getList', timeout: 5000 })
+        .then((res) => {
+            console.log(res);
+        })
+        .catch(
+            error => { console.log(error) }
+        )
+
+
+</script>
