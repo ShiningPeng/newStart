@@ -1,0 +1,107 @@
+<style>
+    .flex {
+        display: flex;
+        height: 100vh;
+        flex-wrap: wrap;
+        align-content: center;
+        /* align-content 对多轴设置位置，单轴不生效 */
+        /* stretch 平分 */
+        align-items: center;
+        justify-content: space-evenly;
+        /* justify-content:space-around每个元素两边的空间是相等的 */
+        /*   1 a 2 b 2 c 1   */
+
+        /* justify-content: space-evenly;剩余空间位置平分 */
+        /* 2 a 2 b 2  */
+
+        /* order: -1; */
+        /* order 越小，设置此属性的元素越靠前 */
+    }
+
+    .item1 {
+        width: 120px;
+        height: 60px;
+        background-color: aqua;
+    }
+
+    .item2 {
+        width: 140px;
+        height: 160px;
+        background-color: red;
+        padding-top: 30px;
+    }
+
+    .item3 {
+        width: 140px;
+        height: 20px;
+        background-color: green;
+        /* align-self: flex-end; */
+    }
+
+    .flex1 {
+        display: flex;
+        /* sum 260 */
+        width: 600px;
+        outline: 1px solid blue;
+    }
+
+    .item11 {
+        flex-grow: 1;
+        /* 有剩余空间自动放大，全部占 */
+        flex-shrink: 1;
+        flex-basis: 200px;
+        /* flex:1 1 200px; */
+
+        /* flex-grow: 0;   不自动放大，默认 */
+
+        /* flex-shrink: 1;  父容器空间不足，缩小 */
+
+
+        /* flex-basis: 200px;  至少占200px */
+    }
+
+
+    /* 圣杯布局 双飞翼布局
+        left固定 main 自适应 right固定
+        html结构 main在前面
+        <div>main</div>
+        <div>left</div>
+        <div>right</div>
+        这样的结构，但是页面中main是中间的
+     */
+</style>
+<div class="flex">
+    <div class="item1">
+        English
+    </div>
+    <div class="item1">
+        English
+    </div>
+    <div class="item3">
+        English
+    </div>
+    <div class="item1">
+        English
+    </div>
+    <div class="item1">
+        English
+    </div>
+    <div class="item2">
+        English
+        <br />
+        English
+        <br />
+    </div>
+</div>
+
+<div class="flex1">
+    <div class="item1 item11">
+        English1
+    </div>
+    <div class="item2 item22">
+        English2
+        <br />
+        English2
+        <br />
+    </div>
+</div>

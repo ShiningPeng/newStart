@@ -29,6 +29,6 @@
 - 对于 transform、opacity 产生变化，不会经过 relayout -> repaint 直接进行composite，提升性能
 
 ## 
-   js -> relayout -> repaint  -> composite(合成)
+   js -> relayout -> repaint  -> composite(合成) - GPU
 
  **layers性能优化：通过对页面中需要动的元素加上提升为layers的属性来提升性能**
