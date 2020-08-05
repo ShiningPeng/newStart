@@ -1,3 +1,5 @@
+## 下拉刷新
+
 0. 触发下拉
    加上 ptr-start 的类名
 1. 下拉过程中
@@ -14,3 +16,7 @@ pan.distance > 40px
 
 3. 加载完毕
    reset 清理工作
+
+
+## styled-component 用法
+
