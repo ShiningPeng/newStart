@@ -23,3 +23,10 @@
     组件节点 （组件return，其中又是标签，通过递归）
     <></> 代理
     文本  递归退出条件
+
+- 项目中遇到的问题
+    - 文档 api 
+    - 相互尊重 极客范
+    - useRef 解决闭包的副作用问题
+    - 接口数据还没有加载完成，用户提前退出页面，报错，can not perform a react state update on an unmounted component
+    

@@ -9,8 +9,6 @@ function App() {
     const [satisfactionLevel, setSatisfactionLevel] = useState(300)
     return (
         <div id="App">
-            
-
             <MyComponent />
         </div>
     )
