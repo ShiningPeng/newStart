@@ -1,0 +1,51 @@
+<script>
+
+    window.name = 'ByteDance';
+    function A() {
+        // new的过程
+        // 生成一个空对象{}
+        // {}.__proto__ = A.prototype  串联原型链
+        // {} 添加 name 属性            添加属性
+        // return
+        console.log(this) //此时指向  {}                          A.prototype
+        // debugger;
+        console.log(this.name);
+        this.name = 123;
+    }
+    A.prototype.getA = function () {
+        console.log(this); 
+        return this.name + 1; 
+    }
+    A.prototype.name = 456;
+    let a = new A();
+    let funcA = a.getA;
+    console.log(funcA());  
+
+    // 456
+    // window
+    // ByteDance1
+
+
+    //谁调用function，this就指向谁
+
+    // 手写new
+    function newConstructor (Constructor) {
+        let obj = {}
+        obj.__proto__ = Constructor.prototype
+        Constructor.apply(obj);
+        return obj;
+    }
+    aaa =  newConstructor()
+    console.log(aaa.name)
+
+    // let objjj = {}
+    // objjj.__proto__ = Object.prototype
+    // Object.prototype.__proto__ = null
+
+
+    Function.__proto__ === Function.prototype        //true
+    Object.__proto__ === Function.prototype         //true
+
+    Function.prototype.__proto__ === Object.prototype  
+    //emmmm反正就是鸡生蛋蛋生鸡，第一层没有找到就通过__proto__再往下一层找
+</script>
