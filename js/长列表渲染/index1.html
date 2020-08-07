@@ -1,0 +1,83 @@
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .wrap {
+        height: 100%;
+        overflow: auto;
+        position: relative;
+        background-color: red;
+    }
+
+    .scroll {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        z-index: -1;
+    }
+
+    .item {
+        height: 100px;
+        color: aqua;
+        padding: 10px;
+        box-sizing: border-box;
+        line-height: 100px;
+        /* background-color: red; */
+    }
+
+    .content {
+        position: absolute;
+        text-align: center;
+        width: 100%;
+        left: 0;
+        top: 0;
+
+    }
+</style>
+
+
+<!-- 100000条列表的容器 -->
+<div class="wrap">
+    <!-- 滚动高度 -->
+    <div style="height: 10000px;" class="scroll"></div>
+    <!-- 放内容 -->
+    <div class="content"></div>
+</div>
+
+<script>
+
+    // 虚拟列表
+    // 动态替换视窗中的内容
+    // 只加载用户视窗能够看到的内容
+    let total = 100000
+    // let scrollInfo = {
+    //     itemSize = 100
+    // }
+    let h = window.innerHeight; //获取视窗高度
+    let visibaleCount = Math.ceil(h / 100)
+    const wrap = document.querySelector('.wrap')
+    wrap.addEventListener('scroll', handleScroll)
+    let d = [];
+    for (let i = 0; i < 100; i++) {
+        d.push({ id: i + 1, value: i + 1 });
+    }
+    const content = document.querySelector('.content')
+
+    function handleScroll() {
+        let scrollTop = wrap.scrollTop;
+        // 算出用户视窗之内该看到的数据起点
+        let start = Math.floor(scrollTop / 100)
+        let end = start + visibaleCount
+        // console.log(start, end);
+        let list = d.slice(start, Math.min(end, d.length));
+        content.innerHTML = list.map((item) => {
+            return `<div class="item">${item.value}</div>`
+        }).join('')
+        content.style.transform = `translate3d(0,${start * 100}px,0)`
+    }
+    handleScroll()
+</script>
