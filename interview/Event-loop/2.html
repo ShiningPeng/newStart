@@ -1,0 +1,31 @@
+<body>
+    
+</body>
+<script>
+    // document.body.style.backgroundColor = 'red'
+    // document.body.style.backgroundColor = 'blue'
+    // 直接blue
+    // 从event-loop 角度来看，一个script标签产生一个宏任务，
+    // 执行完宏任务blue覆盖red，此处没有微任务，进行渲染，宏任务的结果交给浏览器，直接呈现blue
+
+    document.body.style.backgroundColor='green'
+    setTimeout(() => {
+    document.body.style.backgroundColor='aqua'
+    }, 0);
+    //script标签产生一个宏任务，settimeout产生一个宏任务，这两个宏任务之间可能会产生一次渲染
+    // 所以可能看到绿色一闪而过的情况 
+
+
+    document.body.addEventListener('click',()=>{
+        console.log(1)
+        Promise.resolve(2).then(console.log)
+    })
+
+    document.body.addEventListener('click',()=>{
+        console.log(3)
+        Promise.resolve(4).then(console.log)
+    })
+
+    // 1234
+    // click是宿主环境来通知的，也就是用户触发的，是属于宏任务
+</script>

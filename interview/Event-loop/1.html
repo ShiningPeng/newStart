@@ -1,0 +1,42 @@
+<script>
+    // setTimeout(() => {
+    //     console.log(1)
+    //     Promise.resolve(6).then(console.log)
+    // }, 0);
+    // new Promise((resolve, reject) => {
+    //     console.log(2)//生成promise这个部分是同步的，.then才是异步的，产生微任务
+    //     resolve(3)
+    // }).then(r => {
+    //     console.log(r)
+    //     setTimeout(() => {
+    //         console.log(5)
+    //     }, 0);
+    // })
+    //     .then(r => { console.log(r) })
+    // console.log(4)
+    // 2 4 3 undefined 1
+
+
+    // 链式调用.then ,上一个then的返回值就是下一个then的接受的值
+
+    console.log('-----------------')
+
+
+    console.log(1)
+
+    setTimeout(function () {
+        console.log(2)
+    })
+
+    new Promise(function (resolve) {
+        console.log(3)
+        resolve()
+    }).then(function () {
+        console.log(4)
+    }).then(function () {
+        console.log(5)
+    })
+
+    console.log(6)
+// 136452
+</script>
