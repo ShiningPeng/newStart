@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <style>
+            .j{
+                font-size: 30px;
+            }
+            .center{
+                color: red;
+                text-align:center;
+            }
+            .font {
+                color: #f5f5f5;
+            }
+        </style>
+    </div>
+    <h1 class="j">Hello <%=userName%></h1>
+    <h1 class="center">FBI open the door</h1>
+    <%for (let i=0;i<lists.length;i++){%>
+        <h2 class="font"><%=lists[i]%></h2><br/>
+        <%}%>
+</body>
+</html>
