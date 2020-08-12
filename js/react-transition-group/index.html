@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .alert-enter {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+
+        .alert-enter-active {
+            opacity: 1;
+            /* transform：scale(1) */
+            transform: translateX(0);
+            transition: opacity 300ms, transform 300ms;
+        }
+
+        .alert-exit {
+            opacity: 1;
+        }
+
+        .alert-exit-active {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 300ms, transform 300ms;
+        }
+        .box{
+            width: 40px;
+            height: 40px;
+            background-color: aqua;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+
+
+    <script>
+        const box = document.querySelector('.box');
+        box.classList.add('alert-enter');
+        box.clientHeight;//获取盒子的宽高坐标等属性时会触发浏览器的强制重排 force relayout
+        box.classList.add('alert-enter-active');
+        // setTimeout(() => {
+        // }, 16);
+
+
+        // 读写分离
+        for(let i=0;i<10000;i++){
+            // 优化部分，将位置信息读好存储起来
+            var pos =e.offsetTop
+            if(pos){
+
+            }else if(pos){
+
+            }
+            //不优化，每次实时获取位置信息 
+            if(e.offsetTop){
+
+            }else if(e.offsetTop){
+
+            }
+            
+        }
+    </script>
+</body>
+
+</html>

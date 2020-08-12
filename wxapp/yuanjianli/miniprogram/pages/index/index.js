@@ -19,7 +19,7 @@ Page({
             cloudPath: Math.floor(Math.random() * 100000).toString() + '.png',
             filePath,
             success: (res) => {
-              console.log(res)
+              // console.log(res)
               imgs.add({
                 data: {
                   image: res.fileID
