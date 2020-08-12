@@ -1,0 +1,2 @@
+<van-button type="primary" bindtap="upload">{{name}}</van-button>
+  
