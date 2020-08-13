@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // 发布订阅的例子
+    // document.onclick = () => {
+
+    // }
+    // http.createSercer((req,res)=>{
+    //   res.on('data',()=>{})
+    // })
+    let listeners = {}
+    function on(name, fn) {
+      if (listeners[name] === undefined) {
+        listeners[name] = []
+      }
+      listeners[name].push(fn)
+    }
+    function emit(name) {
+      const fns = listeners[name] || [];
+      for (let fn of fns) {
+        fn();
+        if(fn.once){
+          off(name,fn)
+        }
+      }
+    }
+    function off(name, fn) {
+      let listen = listeners[name] || []
+      listeners[name] = listen.filter(listen => listen !== fn);
+    }
+
+    function once(name,fn){
+      fn.once=true
+      on(name,fn);
+
+    }
+    let price1 = () => {
+      console.log('price1 updal')
+    }
+    let price2 = () => {
+      console.log('price2 sffs')
+    }
+    let price3 = () => {
+      console.log('price3 sffs')
+    }
+    let blog1 = () => {
+      console.log('blog1 dfd')
+    }
+    let blog2 = () => {
+      console.log('blog2 odgoee')
+    }
+
+    on('price', price1)
+    once('price', price2)
+    on('price', price3)
+    on('blog', blog1)
+    on('blog', blog2)
+    emit('price')
+    emit('blog')
+    setTimeout(() => {
+      off('price',price1)
+      emit('price')
+    }, 3000);
+  </script>
+</body>
+
+</html>
