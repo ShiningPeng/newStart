@@ -1,0 +1,22 @@
+<script>
+  // hash路由 hashchange
+  // H5 history 路由 popState 只能监测前后的变化（forward back）
+  // push replace 监测不到 需要重写
+
+  window.addEventListener('hashchange',()=>{
+    console.log(window.location.hash)
+  })
+
+  window.addEventListener('popstate',()=>{
+    console.log('new url11',window.location.pathname);
+  })
+
+  let names = ['pushState','replaceState'];
+  for(let name of names){
+    let original = window.history[name]
+    window.history[name]=  function(...args){
+      console.log('new url22',args[2])
+      return original.apply(window.history,args)
+    }
+  }
+</script>

@@ -1,0 +1,57 @@
+<script>
+  // 题目
+  // 填充 inherit 完成输出。
+
+  function inherit(ParentConstructor, prototypeObj) { 
+    function fn(name) {
+      // 继承属性  super()
+      ParentConstructor.call(this, name);
+    }
+
+    fn.prototype = prototypeObj
+    // 将子类的原型链直接指向父类的原型链
+    Object.setPrototypeOf(fn.prototype, ParentConstructor.prototype)
+    // fn.prototype.__proto__ = ParentConstructor.prototype
+    return fn;
+  }
+
+  let animalNum = 0;
+  function Animal(name) {
+    animalNum++;
+    this.name = name;
+  }
+  Animal.prototype.getName = function () {
+    return this.name;
+  };
+  const Cat = inherit(Animal, {
+    say: function () {
+      console.log(`NO${animalNum}:${this.getName()}`);
+    }
+  });
+  const cat1 = new Cat('小花');
+  cat1.say(); // NO1:小花
+
+
+
+  // 继承属性就是通过改变this的指向，因为原本父类的属性是在this上的，如this.name = name,
+  // 将this指向子类之后就相当于子类把父类的属性给挪过来了，
+
+  // 原型链先是在构造函数中寻找属性或者方法，没找到就去prototype上找，没找到的话再找__proto__，
+  // 也就是父类上的prototype
+
+
+  // Object.create
+  let aaa= {
+    a:1
+  }
+  let bbb = {
+    b:1
+  }
+  bbb.prototype = null
+  let obj1 = Object.create(bbb)
+  console.log(obj1)
+  // 等效于
+  // let xx = {}
+  // xx.__proto__ = bbb 
+
+</script>
