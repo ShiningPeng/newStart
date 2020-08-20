@@ -9,7 +9,7 @@
     }
 
     fn.prototype = prototypeObj
-    // 将子类的原型链直接指向父类的原型链
+    // 将子类原型的原型链直接指向父类的原型
     Object.setPrototypeOf(fn.prototype, ParentConstructor.prototype)
     // fn.prototype.__proto__ = ParentConstructor.prototype
     return fn;
