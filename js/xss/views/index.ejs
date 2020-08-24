@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <a href="/?xss=<script>alert(document.cookie)</script>">xss1</a>
+  <a href="/?xss=<style>a{color:red;}a:hover{color:green;display:none;}</style>">xss2</a>
+   <a href="/?xss=<iframe src='http://www.baidu.com'></iframe>">xss3</a> 
+  <h1>首页</h1>
+  <h2><%- username %></h2>
+  <h2><%- xss %></h2>
+  <%- dataFromDB %>
+
+  <script>
+    var msg = <%- js %>
+  </script>
+</body>
+</html>
