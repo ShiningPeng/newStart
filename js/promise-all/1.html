@@ -1,0 +1,32 @@
+<script>
+
+// 写出这段代码的输出结果：
+
+function createTask(ms) {
+   return () => {
+     console.log('start', ms);
+     return new Promise(r => setTimeout(() => {
+       console.log('end', ms);
+       r(ms);
+     }, ms));
+   }
+}
+const tasks = Array(5).fill(null).map((_, i) => createTask(i * 1000));
+console.log(tasks,'tasks')
+Promise.all(tasks.map(task => task())).then(console.log);
+
+
+// 等0秒
+// 0
+// 等1秒
+// 1000
+// 等1秒
+// 2000
+// 等1秒
+// 3000
+// 等1秒
+// 4000
+// 限流运行两个任务
+
+</script>
+

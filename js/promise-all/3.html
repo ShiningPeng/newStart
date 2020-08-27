@@ -1,0 +1,24 @@
+<script>
+
+  const promise1 = new Promise((resolve, reject) => {
+    setTimeout(resolve, 500, 'one');
+  });
+
+  const promise2 = new Promise((resolve, reject) => {
+    setTimeout(resolve, 100, 'two');
+  });
+
+  Promise.race([promise1, promise2]).then((value) => {
+    console.log(value);
+    // Both resolve, but promise2 is faster
+  });
+
+  Promise.myRace = function (promises) {
+    return new Promise((resolve, reject) => {
+      for (let p of promise) {
+        // p.then((r) => { resolve(r) }).catch((e) => { reject(e) })
+        p.then(resolve).catch(reject)
+      }
+    })
+  }
+</script>

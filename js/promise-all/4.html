@@ -1,0 +1,40 @@
+<script>
+
+function createTask(ms) {
+   return () => {
+     console.log('start', ms);
+     return new Promise(r => setTimeout(() => {
+       console.log('end', ms);
+       r(ms);
+     }, ms));
+   }
+}
+const tasks = Array(5).fill(null).map((_, i) => createTask(i * 1000));
+
+  function limitTasks(tasks, limit) {
+    return new Promise((resolve, reject) => {
+      let finish = 0, res = [], index = 0, running = 0;
+      function run() {
+        // 每次运行一个任务
+        if(finish >= tasks.length){
+          resolve(res)
+          return;
+        }
+        while (running < limit && index < tasks.length) {
+          let curIndex = index;
+          const p = tasks[index]()
+          p.then(r => {
+            finish++;
+            res[curIndex] = r;
+            running--;
+            run();
+          })
+          index++;
+          running++;
+        }
+      }
+      run()
+    })
+  }
+  limitTasks(tasks,2).then(console.log)
+</script>
