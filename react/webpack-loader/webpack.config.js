@@ -1,3 +1,6 @@
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const path = require('path')
+
 const config = {
   entry: './src/index.js',
   resolve: {
@@ -14,13 +17,25 @@ const config = {
         use: ['babel-loader'],
         exclude: /node_modules/
       },
+      {
+        test: /.md$/,
+        use: {
+          loader: path.resolve(__dirname, './src/md-loader.js')
+        },
+      },
+      {
+        test: /.vue$/,
+        use: {
+          loader: path.resolve(__dirname, './src/vue-loader.js')
+        }
+      }
     ]
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './public/index.html',
-      filename: 'index.html'
-    }),
-  ]
+plugins: [
+  new HtmlWebpackPlugin({
+    template: './public/index.html',
+    filename: 'index.html'
+  }),
+]
 }
 module.exports = config
