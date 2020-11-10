@@ -1,0 +1,25 @@
+<script>
+  var levelOrder = function (root) {
+    if (!root) return [];
+    let queue = [root],
+      res = [];
+    while (queue.length) {
+      // 一行
+      let rowNodes = queue.splice(0);
+      let row = [];
+      for (let node of rowNodes) {
+        row.push(node.val);
+        if (node.left) queue.push(node.left);
+        if (node.right) queue.push(node.right);
+      }
+      res.push(row);
+    }
+    return res;
+  };
+
+  // 层序遍历模板
+  // let queue = [root]
+  // while(queue.length){
+  //   queue.push()
+  // }
+</script>
